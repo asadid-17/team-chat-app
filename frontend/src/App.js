@@ -8,11 +8,20 @@ import About from './component/About'
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import ChatRoom from './component/ChatRoom';
 import AvailRoom from './component/AvailRoom';
-import Authorize from './components/Auth';
+import {io} from 'socket.io-client';
+import { useEffect, useState } from 'react';
 
 
 
 function App() {
+
+  const url = 'http://localhost:5000'
+  const [socket, setSocket] = useState(io(url, {autoConnect : false}));
+
+  useEffect(() => {
+    socket.connect();
+  }, [])
+
   return (
 
     
@@ -26,9 +35,8 @@ function App() {
          
           <Route element={<Register></Register>} path="register"/> 
           <Route element={<Login></Login>} path="Login"/>
-          <Route element={<AvailRoom></AvailRoom>} path="AvailRoom"/>
-          <Route element={<ChatRoom></ChatRoom>} path="ChatRoom"/>
-          <Route element={<Authorize><UserManager /></Authorize>} path="usermanager" />
+          <Route element={<AvailRoom socket={socket}></AvailRoom>} path="AvailRoom"/>
+          <Route element={<ChatRoom socket={socket}></ChatRoom>} path="ChatRoom"/>
           <Route element={<About></About>} path="About"/>
           
          

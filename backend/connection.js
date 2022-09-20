@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db = 'mernwss1000';
+const db = 'chatapp';
 const dbUrl = `mongodb+srv://asad:asad1@cluster0.jyiwvhv.mongodb.net/test`;
 
 // Asynchronous Function - returns Promise
