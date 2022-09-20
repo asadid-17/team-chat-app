@@ -1,0 +1,8 @@
+.test{
+    overflow: scroll;
+}
+.room-area{
+    height : 50vh;
+    width:50vw ;
+    overflow: auto;
+}
